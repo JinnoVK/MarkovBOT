@@ -39,7 +39,7 @@ namespace MarkovBOT.Services
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            this.client.Ready += Test;
+            this.client.Ready += StartTimer;
             this.client.MessageReceived += OnMessageReceived;
             await this.service.AddModulesAsync(Assembly.GetEntryAssembly(), this.provider);
         }
@@ -159,7 +159,7 @@ namespace MarkovBOT.Services
             }
             return result.ToString();
         }
-        private async Task Test()
+        private async Task StartTimer()
         {
             t.AutoReset = true;
             t.Elapsed += new ElapsedEventHandler(OnTimedEvent);
